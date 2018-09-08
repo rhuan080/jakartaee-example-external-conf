@@ -19,7 +19,7 @@ public class Config {
     public String WELCOME;
 
     @Inject
-    @Property(key="message.welcome", container = false, path = "/home/rhuan/rhuan/servers/files/config.properties")
+    @Property(key="message.welcome", container = false, fileName = "config.properties")
     public String WELCOME_EXTERNAL_FILE;
 
     @Inject
@@ -29,4 +29,7 @@ public class Config {
     @Inject
     @Property(key="path.upload")
     public String PATH_UPLOAD;
+
+
+
 }

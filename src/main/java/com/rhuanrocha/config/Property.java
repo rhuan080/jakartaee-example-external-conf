@@ -21,7 +21,7 @@ public @interface Property {
 
     @Nonbinding String key() default "";
 
-    @Nonbinding String path() default "";
+    @Nonbinding String fileName() default "";
 
     @Nonbinding boolean container() default true;
 }

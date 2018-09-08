@@ -43,13 +43,27 @@ public class PropertyProducer {
         return readFromPath(point
                 .getAnnotated()
                 .getAnnotation(Property.class)
-                .path(), key);
+                .fileName(), key);
 
     }
 
-    private String readFromPath(String path, String key){
+    private String readFromPath(String fileName, String key){
 
-        try(InputStream in = new FileInputStream(path)){
+        Properties configStore = new Properties();
+
+        try( InputStream stream = PropertyProducer.class
+                .getResourceAsStream("/configurationStore.properties") ) {
+
+            configStore.load(stream);
+        }
+        catch ( Exception e ) {
+            e.printStackTrace();
+            throw new PropertyException("Error to read property.");
+        }
+
+
+
+        try(InputStream in = new FileInputStream(configStore.getProperty("path") + fileName)){
 
             Properties properties = new Properties();
             properties.load( in );
