@@ -1,5 +1,5 @@
 # jakartaee-example-external-conf
-An example of external configuration pattern using Jakarta EE using a application server as a configuration server or using a external file.
+An example of external configuration pattern using Jakarta EE using a application server as a configuration server or using an external file.
 
 ## Using the Application Server as Configuration Server
 
