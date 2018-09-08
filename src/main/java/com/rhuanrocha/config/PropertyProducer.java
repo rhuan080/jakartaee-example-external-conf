@@ -49,21 +49,7 @@ public class PropertyProducer {
 
     private String readFromPath(String fileName, String key){
 
-        Properties configStore = new Properties();
-
-        try( InputStream stream = PropertyProducer.class
-                .getResourceAsStream("/configurationStore.properties") ) {
-
-            configStore.load(stream);
-        }
-        catch ( Exception e ) {
-            e.printStackTrace();
-            throw new PropertyException("Error to read property.");
-        }
-
-
-
-        try(InputStream in = new FileInputStream(configStore.getProperty("path") + fileName)){
+        try(InputStream in = new FileInputStream( readPathConfigurationStore() + fileName)){
 
             Properties properties = new Properties();
             properties.load( in );
@@ -76,6 +62,23 @@ public class PropertyProducer {
         }
 
 
+    }
+
+    private String readPathConfigurationStore(){
+
+        Properties configStore = new Properties();
+
+        try( InputStream stream = PropertyProducer.class
+                .getResourceAsStream("/configurationStore.properties") ) {
+
+            configStore.load(stream);
+        }
+        catch ( Exception e ) {
+            e.printStackTrace();
+            throw new PropertyException("Error to read property.");
+        }
+
+        return configStore.getProperty("path");
     }
 
 }
